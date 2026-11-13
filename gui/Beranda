@@ -1,0 +1,38 @@
+package gui;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.awt.GridLayout;
+
+/** Titik masuk aplikasi contoh. Pada aplikasi tim, beranda dibuka sesudah login. */
+public class Beranda extends BaseForm {
+
+    public Beranda() {
+        super("SiTiket - Pemesanan Tiket Kapal Penyeberangan", 420, 220);
+    }
+
+    @Override
+    protected void susunKomponen() {
+        JPanel panel = new JPanel(new GridLayout(3, 1, 10, 10));
+
+        JButton tombolPenumpang = new JButton("Data Penumpang");
+        tombolPenumpang.addActionListener(e -> new FormPenumpang().setVisible(true));
+
+        JButton tombolJadwal = new JButton("Jadwal Keberangkatan");
+        tombolJadwal.addActionListener(e -> new FormJadwal().setVisible(true));
+
+        JButton tombolPemesanan = new JButton("Pemesanan Tiket");
+        tombolPemesanan.addActionListener(e -> new FormPemesanan().setVisible(true));
+
+        panel.add(tombolPenumpang);
+        panel.add(tombolJadwal);
+        panel.add(tombolPemesanan);
+        add(panel);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Beranda().setVisible(true));
+    }
+}
